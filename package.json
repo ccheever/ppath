@@ -1,0 +1,20 @@
+{
+  "name": "readable-path",
+  "version": "1.0.0",
+  "description": "A short script that prints out the cwd in readable fashion; tries to replace the prefix with each of your ENV vars or ~",
+  "main": "path.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccheever/readable-path.git"
+  },
+  "author": "Charlie Cheever <ccheever@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ccheever/readable-path/issues"
+  },
+  "homepage": "https://github.com/ccheever/readable-path#readme",
+  "keywords": ["path", "cwd", "home", "human-readable", "env", "dir"]
+}
