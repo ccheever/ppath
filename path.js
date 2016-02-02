@@ -33,5 +33,8 @@ if (stringStartsWith(p, home)) {
   p = '~' + p.slice(home.length);
 }
 
-console.log(p);
+module.exports = p;
 
+if (require.main === module) {
+  console.log(p);
+}
