@@ -1,6 +1,6 @@
 {
   "name": "readable-path",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A short script that prints out the cwd in readable fashion; tries to replace the prefix with each of your ENV vars or ~",
   "main": "path.js",
   "scripts": {
