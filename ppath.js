@@ -21,9 +21,14 @@ function computePrettyPath(p, opts) {
   }
   var home = getUserHome();
 
+  var longestMatchLength = 0;
   for (var v in process.env) {
     var rw = process.env[v];
     if (!rw) {
+      continue;
+    }
+
+    if (rw.length <= longestMatchLength) {
       continue;
     }
 
@@ -36,6 +41,7 @@ function computePrettyPath(p, opts) {
       default:
         if (stringStartsWith(pp, rw)) {
           pp = '$' + v + pp.slice(rw.length);
+          longestMatchLength = rw.length;
         }
         break;
     }
