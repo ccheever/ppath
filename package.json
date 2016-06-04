@@ -1,11 +1,12 @@
 {
-  "name": "readable-path",
-  "version": "1.1.0",
+  "name": "@ccheever/ppath",
+  "version": "3.1.0",
   "description": "A short script that prints out the cwd in readable fashion; tries to replace the prefix with each of your ENV vars or ~",
-  "main": "path.js",
+  "main": "ppath.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
+  "bin": "./ppath.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ccheever/readable-path.git"
@@ -16,5 +17,16 @@
     "url": "https://github.com/ccheever/readable-path/issues"
   },
   "homepage": "https://github.com/ccheever/readable-path#readme",
-  "keywords": ["path", "cwd", "home", "human-readable", "env", "dir"]
+  "keywords": [
+    "path",
+    "cwd",
+    "home",
+    "human-readable",
+    "env",
+    "dir"
+  ],
+  "devDependencies": {
+    "jest": "^0.1.40",
+    "jest-cli": "^0.10.0"
+  }
 }
