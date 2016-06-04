@@ -22,6 +22,8 @@ function computePrettyPath(p, opts) {
   var home = getUserHome();
 
   var longestMatchLength = 0;
+  var matchKey = null;
+  var matchVal = null;
   for (var v in process.env) {
     var rw = process.env[v];
     if (!rw) {
@@ -40,11 +42,16 @@ function computePrettyPath(p, opts) {
 
       default:
         if (stringStartsWith(pp, rw)) {
-          pp = '$' + v + pp.slice(rw.length);
           longestMatchLength = rw.length;
+          matchVal = rw;
+          matchKey = v;
         }
         break;
     }
+  }
+
+  if (longestMatchLength > 0) {
+    pp = '$' + matchKey + pp.slice(matchVal.length);
   }
 
   if (stringStartsWith(pp, home)) {

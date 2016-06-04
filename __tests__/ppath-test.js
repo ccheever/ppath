@@ -34,4 +34,10 @@ describe('Basic Usage', function () {
     expect(prettyPath(__filename)).toBe('$PPATH_TEST_DIR/' + path.basename(__filename));
   });
 
+  process.env.VAR = '/PPATH_TEST_DIR/var';
+  process.env.TMP = '/PPATH_TEST_DIR/var/tmp';
+  it("Matches the longest thing if multiple things match", function () {
+    expect(prettyPath('/PPATH_TEST_DIR/var/tmp/some_file')).toBe('$TMP/some_file');
+  });
+
 });
