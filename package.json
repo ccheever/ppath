@@ -1,6 +1,6 @@
 {
-  "name": "@exponent/ppath",
-  "version": "3.2.0",
+  "name": "@expo/ppath",
+  "version": "3.2.1",
   "description": "A short script that prints out the cwd in readable fashion; tries to replace the prefix with each of your ENV vars or ~",
   "main": "ppath.js",
   "scripts": {
