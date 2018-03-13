@@ -1,6 +1,6 @@
 {
   "name": "@expo/ppath",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "A short script that prints out the cwd in readable fashion; tries to replace the prefix with each of your ENV vars or ~",
   "main": "ppath.js",
   "scripts": {
@@ -9,14 +9,14 @@
   "bin": "./ppath.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ccheever/readable-path.git"
+    "url": "git+https://github.com/ccheever/pretty-path.git"
   },
   "author": "Charlie Cheever <ccheever@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ccheever/readable-path/issues"
+    "url": "https://github.com/ccheever/pretty-path/issues"
   },
-  "homepage": "https://github.com/ccheever/readable-path#readme",
+  "homepage": "https://github.com/ccheever/pretty-path#readme",
   "keywords": [
     "path",
     "cwd",
