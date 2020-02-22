@@ -1,12 +1,14 @@
 {
-  "name": "@expo/ppath",
-  "version": "3.2.2",
-  "description": "A short script that prints out the cwd in readable fashion; tries to replace the prefix with each of your ENV vars or ~",
+  "name": "ppath-cli",
+  "version": "5.0.0",
+  "description": "Pretty prints the paths of files",
   "main": "ppath.js",
   "scripts": {
     "test": "jest"
   },
-  "bin": "./ppath.js",
+  "bin": {
+    "ppath": "./ppath.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ccheever/pretty-path.git"
@@ -27,6 +29,10 @@
   ],
   "devDependencies": {
     "jest": "^0.1.40",
-    "jest-cli": "^0.10.0"
+    "jest-cli": "^0.10.0",
+    "project-repl": "^1.5.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
   }
 }

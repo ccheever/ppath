@@ -1,31 +1,34 @@
 #!/usr/bin/env node
 
-var path = require('path');
+let path = require('path');
 
 function getUserHome() {
-  return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+  return process.env[process.platform == 'win32' ? 'USERPROFILE' : 'HOME'];
 }
 
-function stringStartsWith (string, prefix) {
+function stringStartsWith(string, prefix) {
   return string.slice(0, prefix.length) == prefix;
 }
 
-function computePrettyPath(p, opts) {
-  var pp;
-  opts = opts || {};
+function ppath(p, opts) {
+  let pp;
+  opts = opts || {
+    envvars: true,
+    tilde: true,
+  };
 
   if (p) {
     pp = path.resolve(p);
   } else {
     pp = path.resolve(process.cwd());
   }
-  var home = getUserHome();
+  let home = getUserHome();
 
-  var longestMatchLength = 0;
-  var matchKey = null;
-  var matchVal = null;
+  let longestMatchLength = 0;
+  let matchKey = null;
+  let matchVal = null;
   for (var v in process.env) {
-    var rw = process.env[v];
+    let rw = process.env[v];
     if (!rw) {
       continue;
     }
@@ -51,24 +54,74 @@ function computePrettyPath(p, opts) {
   }
 
   if (longestMatchLength > 0) {
-    pp = '$' + matchKey + pp.slice(matchVal.length);
+    if (opts.envvars) {
+      pp = '$' + matchKey + pp.slice(matchVal.length);
+    }
   }
 
   if (stringStartsWith(pp, home)) {
-    if (opts.dontUseTilde) {
-      pp = '$HOME' + pp.slice(home.length);
-    } else {
+    if (opts.tilde) {
       pp = '~' + pp.slice(home.length);
+    } else {
+      if (opts.envvars) {
+        pp = '$HOME' + pp.slice(home.length);
+      }
     }
   }
 
   return pp;
-
 }
 
-module.exports = computePrettyPath;
+function printHelp() {
+  console.log(`Pretty prints the paths of files
+
+Usage: ppath [options] [paths]
+
+Options:
+  -h, --help         Display this help message
+  -v, --version      Display the version
+  -n                 Don't substitute environment variables
+  -t                 Don't substitute ~ for the user's home directory
+  -f, --full         No substitutions, just the explicit absolute path
+`);
+}
+
+function main() {
+  let minimist = require('minimist');
+  let args = minimist(process.argv.slice(2), {
+    boolean: ['n', 't', 'f', 'full'],
+    alias: { n: 'no_envvars', t: 'no_tilde', h: 'help', f: 'full', v: 'version' },
+  });
+
+  if (args.help) {
+    printHelp();
+    return;
+  }
+
+  if (args.version) {
+    let pkg = require('./package');
+    console.log(pkg.version || '?');
+    return;
+  }
+
+  let envvars = true;
+  let tilde = true;
+
+  if (args.full) {
+    envvars = !args.full;
+    tilde = !args.full;
+  } else {
+    envvars = !args.no_envvars;
+    tilde = !args.no_tilde;
+  }
+
+  for (let p of args._) {
+    console.log(ppath(p, { envvars, tilde }));
+  }
+}
 
 if (require.main === module) {
-  var arg = process.argv[2] || '.';
-  console.log(computePrettyPath(arg));
+  main();
 }
+
+module.exports = ppath;
