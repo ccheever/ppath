@@ -115,6 +115,9 @@ function main() {
     tilde = !args.no_tilde;
   }
 
+  if (args._.length < 1) {
+    args._.push('.');
+  }
   for (let p of args._) {
     console.log(ppath(p, { envvars, tilde }));
   }
